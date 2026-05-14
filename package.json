@@ -1,0 +1,33 @@
+{
+  "name": "acgile-careers",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^4.0.9",
+    "@hookform/resolvers": "^5.2.2",
+    "@tailwindcss/postcss": "^4.1.17",
+    "framer-motion": "^12.23.24",
+    "graphql": "^16.12.0",
+    "lodash": "^4.17.21",
+    "multer": "^2.0.2",
+    "next": "^16.0.3",
+    "nodemailer": "^7.0.10",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.66.1",
+    "swiper": "^12.0.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.3",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  }
+}

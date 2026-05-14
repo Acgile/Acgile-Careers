@@ -1,0 +1,149 @@
+@keyframes move-gradient {
+  0% {
+    left: calc(-100% + 90px);
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@keyframes spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes path-1-fill {
+  0% {
+    fill: var(--path-fill-1);
+  }
+  50% {
+    fill: var(--path-fill-2);
+  }
+  100% {
+    fill: var(--path-fill-3);
+  }
+}
+@keyframes path-2-fill {
+  0% {
+    fill: var(--path-fill-4);
+  }
+  50% {
+    fill: var(--path-fill-3);
+  }
+  100% {
+    fill: var(--path-fill-1);
+  }
+}
+@keyframes path-3-fill {
+  0% {
+    fill: var(--path-fill-3);
+  }
+  50% {
+    fill: var(--path-fill-5);
+  }
+  100% {
+    fill: var(--path-fill-2);
+  }
+}
+@keyframes path-4-fill {
+  0% {
+    fill: var(--path-fill-4);
+  }
+  50% {
+    fill: var(--path-fill-3);
+  }
+  100% {
+    fill: var(--path-fill-1);
+  }
+}
+@keyframes path-5-fill {
+  0% {
+    fill: var(--path-fill-1);
+  }
+  50% {
+    fill: var(--path-fill-2);
+  }
+  100% {
+    fill: var(--path-fill-3);
+  }
+}
+@keyframes path-6-fill {
+  0% {
+    fill: var(--path-fill-4);
+  }
+  50% {
+    fill: var(--path-fill-3);
+  }
+  100% {
+    fill: var(--path-fill-1);
+  }
+}
+@keyframes path-7-fill {
+  0% {
+    fill: var(--path-fill-3);
+  }
+  50% {
+    fill: var(--path-fill-5);
+  }
+  100% {
+    fill: var(--path-fill-2);
+  }
+}
+@keyframes path-8-fill {
+  0% {
+    fill: var(--path-fill-2);
+  }
+  50% {
+    fill: var(--path-fill-3);
+  }
+  100% {
+    fill: var(--path-fill-5);
+  }
+}
+
+@keyframes link-underline {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes link-hover-underline {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes link-glow {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    filter: blur(10px);
+    visibility: hidden;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 100px));
+  }
+}
