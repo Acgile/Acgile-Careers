@@ -125,9 +125,13 @@ const SingleJob = async ({ searchParams }) => {
             <p className="text-secondary text-[8px] t:text-[10px] sd:text-[16px] flex items-center justify-end t:mb-[5px]">
               <IconCalendar />{" "}
               <span className="ml-[3px] sd:ml-[8px] font-semibold">
-                Posted:&nbsp;{" "}
+                Published:&nbsp;{" "}
               </span>{" "}
-              {job.date.split("T")[0]}
+              { new Date(job.date).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+              }) }
             </p>
             {job.fields.additionalDetails.applicationDeadline && (
               <p className="text-secondary text-[8px] t:text-[10px] sd:text-[16px] flex items-center justify-end">

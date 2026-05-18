@@ -5,8 +5,10 @@ import Image from "next/image";
 
 const JobsList = async () => {
   const jobsData = await getJobData();
+const activeJobs =                                                                                                                                                                                    
+    jobsData?.jobs?.nodes?.filter((job) => job.fields?.isActive) ?? [];
 
-  if (!jobsData || jobsData.jobs.nodes.length === 0) {
+  if (!jobsData || activeJobs.length === 0) {
     return (
       <div className="flex flex-col items-center max-w-[1344px] m-auto sd:flex-row sd:gap-[100px] sd:justify-between">
         <div>
@@ -40,7 +42,7 @@ const JobsList = async () => {
       />
       <div className="flex flex-col gap-[30px] sd:gap-[40px] mt-[30px] sd:mt-[60px]">
         {jobsData.jobs.nodes.map((job, index) => (
-          <JobCard job={job} key={index} />
+          <JobCard job={job} key={index} />          
         ))}
       </div>
     </div>
