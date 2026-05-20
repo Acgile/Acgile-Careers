@@ -3,15 +3,15 @@ import Image from "next/image";
 import logo from "@/public/acgile-logo.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useCallback, useLayoutEffect } from "react";
+import { useState, useCallback, useLayoutEffect } from "react";
 import { throttle } from "lodash";
 import DropdownMenu from "@/components/DropdownMenu";
 import { mainMenu } from "@/lib/localData";
-
+import MobileMenu from "@/components/MobileMenu";
 const Header = () => {
   const currentPath = usePathname();
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
-  const [openDropdowns, setOpenDropdowns] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const activeMenuItem = (link, currentPath) => {
     if (link.name === "Resources")
@@ -36,15 +36,6 @@ const Header = () => {
     setMobileMenuActive((prev) => !prev);
   };
 
-  const handleMobileDropdown = (e, linkName) => {
-    e.stopPropagation();
-    e.preventDefault();
-    setOpenDropdowns((prev) => ({
-      ...prev,
-      [linkName]: !prev[linkName],
-    }));
-  };
-
   const [stickyActive, setStickyActive] = useState(false);
 
   const handleStick = useCallback(
@@ -53,15 +44,27 @@ const Header = () => {
       if (isSticky !== stickyActive) {
         setStickyActive(isSticky);
       }
-    }, 300), // Throttle to run at most once every 100ms
+    }, 300),
     [stickyActive]
   );
 
   useLayoutEffect(() => {
-    handleStick(); // Check initial state
+    handleStick();
     window.addEventListener("scroll", handleStick);
     return () => window.removeEventListener("scroll", handleStick);
   }, [handleStick]);
+
+  const handleMouseEnter = (linkName) => {
+    setActiveDropdown(linkName);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveDropdown(null);
+  };
+
+  const closeDropdown = () => {
+    setActiveDropdown(null);
+  };
 
   return (
     <>
@@ -78,7 +81,7 @@ const Header = () => {
               : "py-[15px] t:py-[20px] sd:py-[30px]"
           } transition-all duration-75 ease-linear"`}
         >
-          <Link href="https://acgile.com">
+          <Link href="/">
             <Image
               src={logo}
               alt="Acgile Logo"
@@ -87,6 +90,7 @@ const Header = () => {
               className={`hidden sd:block transition-all duration-75 ease-linear ${
                 stickyActive ? "scale-[0.76]" : "scale-100"
               } origin-left`}
+              priority
             />
             <Image
               src={logo}
@@ -96,40 +100,67 @@ const Header = () => {
               className={`sd:hidden transition-all duration-75 ease-linear ${
                 stickyActive ? "w-[105px] h-[29px]" : "w-[120px] h-[34px]"
               }`}
+              priority
             />
           </Link>
 
           {/* Desktop Menu */}
           <nav>
-            <ul className="items-center gap-x-[10px] p-[10px] bg-white/50 border border-grey-f5 rounded-full shadow-[0_3px_1px_# hidden sd:flex">
+            <ul className="items-center gap-x-[10px] p-[10px] bg-white/50 border border-grey-f5 rounded-full shadow-[0_3px_1px_#] hidden sd:flex">
               {mainMenu.map((link, index) => {
                 const active = activeMenuItem(link, currentPath);
                 return (
-                  <li key={index} className="relative group">
+                  <li
+                    key={index}
+                    className="relative"
+                    onMouseEnter={() =>
+                      link.submenu && handleMouseEnter(link.name)
+                    }
+                    onMouseLeave={() => link.submenu && handleMouseLeave()}
+                  >
                     <Link
                       href={link.path}
-                      className={`flex items-center gap-x-[5px] px-[16px] py-[12px] rounded-[50px] border transition-all ease-in-out duration-200 
-                before:inline-block before:bg-grey-e2 before:w-[5px] before:h-[5px] before:rounded-full before:transition-bg before:duration-200
-                hover:text-black hover:border-grey-eb hover:before:bg-grey-97
-                hover:shadow-[0_2px_2px_#05203914,inset_0_-3px_5px_#0520390D] 
-                ${
-                  active
-                    ? "text-black font-semibold border-grey-eb before:bg-primary shadow-[0_2px_2px_#05203914,inset_0_-3px_5px_#0520390D]"
-                    : "text-grey-97 border-transparent"
-                } 
-              `}
+                      className={`flex items-center gap-x-[5px] text-[18px] leading-[22px] px-[16px] py-[12px] rounded-[50px] border smooth 
+                  before:inline-block before:bg-grey-e2 before:w-[5px] before:h-[5px] before:rounded-full before:transition-bg before:duration-200
+                  hover:text-black hover:border-grey-eb hover:before:bg-grey-97
+                  hover:shadow-[0_2px_2px_#05203914,inset_0_-3px_5px_#0520390D] 
+                  ${
+                    active
+                      ? "text-black font-semibold border-grey-eb before:bg-primary shadow-[0_2px_2px_#05203914,inset_0_-3px_5px_#0520390D]"
+                      : "text-grey-97 border-transparent"
+                  } 
+                `}
                     >
                       {link.name}
                     </Link>
-                    {link.submenu && <DropdownMenu menu={link.submenu} />}
+                    {link.submenu && (
+                      <DropdownMenu
+                        menu={link.submenu}
+                        parentLink={link}
+                        isOpen={activeDropdown === link.name}
+                        onClose={closeDropdown}
+                        categoryMenu={
+                          link.name === "Resources"
+                            ? link.submenu.find((item) => item.name === "Blogs")
+                                ?.categoryMenu || []
+                            : []
+                        }
+                      />
+                    )}
                   </li>
                 );
               })}
             </ul>
           </nav>
           <Link
-            className={`px-[25px] py-[16px] relative overflow-hidden transition-all ease-in-out duration-200 items-center justify-center gap-x-[10px] rounded-full font-semibold bg-primary  text-white shadow-[0_12px_26px_#0028570D,inset_0_-4px_7px_#00415E1F] before:transition before:duration-500 before:w-[50px] before:h-[50px] before:absolute before:left-[5px] before:top-1/2 before:transform before:-translate-y-1/2 before:scale-0 before:rounded-full before:bg-[#15c1fc] hover:before:scale-[5] hidden sd:inline-flex`}
-            href="/contact"
+            className={`px-[25px] py-[16px] relative overflow-hidden smooth items-center justify-center gap-x-[10px] rounded-full font-semibold bg-primary  text-white shadow-[0_12px_26px_#0028570D,inset_0_-4px_7px_#00415E1F] before:transition before:duration-500 before:w-[50px] before:h-[50px] before:absolute before:left-[5px] before:top-1/2 before:transform before:-translate-y-1/2 before:scale-0 before:rounded-full before:bg-[#15c1fc] hover:before:scale-[5] hidden sd:inline-flex`}
+            href={`/contact${
+              currentPath !== "/contact" && currentPath !== "/thank-you"
+                ? `?ref=${
+                    currentPath === "/" ? "home" : currentPath.split("/").at(-1)
+                  }`
+                : ""
+            }`}
           >
             <PhoneIcon />
             <span className="relative z-10">Contact</span>
@@ -138,8 +169,8 @@ const Header = () => {
           {/* Mobile Menu Trigger */}
           <button
             onClick={handleMobileMenu}
-            className="flex items-center justify-center rounded-full bg-white/10 border border-grey-f5 hover:bg-primary hover:border-primary sd:hidden 
-            w-[40px] h-[40px] t:w-[45px] t:h-[45px] group transition-all ease-in-out duration-200"
+            className="flex items-center justify-center rounded-full bg-white/10 border border-grey-eb hover:bg-primary hover:border-primary sd:hidden 
+            w-[40px] h-[40px] t:w-[45px] t:h-[45px] group smooth"
           >
             <svg
               className="t:w-[18px] t:h-[12px]"
@@ -150,7 +181,7 @@ const Header = () => {
               viewBox="0 0 20 14"
             >
               <path
-                className="stroke-secondary group-hover:stroke-white transition-all ease-in-out duration-200"
+                className="stroke-[#1C354C] group-hover:stroke-white smooth"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M1 1h18M1 7h18M1 13h18"
@@ -170,112 +201,28 @@ const Header = () => {
             : "top-[-50px] opacity-0 invisible blur-lg"
         } z-[999] w-full h-screen bg-grey-f5 backdrop-blur-[14px] sd:hidden transition-all duration-200 ease-in`}
       >
-        <nav
-          style={{ overflow: "auto" }}
-          className="h-full container pb-[30px] border-b border-grey-e2"
-        >
-          <ul className="flex flex-col gap-[10px] ">
-            {mainMenu.map((link, index) => {
-              const active =
-                currentPath == link.path ||
-                currentPath.slice(
-                  currentPath.indexOf("/", 0),
-                  currentPath.indexOf("/", 1)
-                ) == link.path;
-              return (
-                <li key={index}>
-                  <Link
-                    onClick={() => setMobileMenuActive(false)}
-                    href={link.path}
-                    className={`relative mobile-menu-item flex items-center gap-x-[5px] p-[20px] ${
-                      openDropdowns[link.name]
-                        ? "rounded-tl-[8px] rounded-tr-[8px] bg-white"
-                        : "rounded-[8px]"
-                    } transition-all ease-in-out duration-200 ${
-                      active ? "bg-white" : ""
-                    } hover:bg-white
-                before:inline-block before:bg-grey-e2 before:w-[5px] before:h-[5px] before:rounded-full before:transition-bg before:duration-200
-                hover:text-black hover:border-grey-eb hover:before:bg-grey-97
-                ${
-                  active
-                    ? "text-black font-semibold bg-white before:bg-primary hover:before:bg-primary"
-                    : "text-grey-97 border-transparent"
-                } 
-              `}
-                  >
-                    {link.name}
-                    {link.submenu && (
-                      <span
-                        onClick={(e) => handleMobileDropdown(e, link.name)}
-                        className="absolute right-0 top-0 bottom-0 px-[20px] rounded-[8px] inline-flex justify-center items-center"
-                      >
-                        <svg
-                          width="12"
-                          height="8"
-                          viewBox="0 0 12 8"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={`transition-all ease-in-out duration-200 ${
-                            openDropdowns[link.name] ? "rotate-0" : "rotate-180"
-                          }`}
-                        >
-                          <path
-                            d="M1 6.5L6 1.5L11 6.5"
-                            stroke="#1C354C"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                    )}
-                  </Link>
-
-                  {/* Dropdown Menu */}
-                  {link.submenu && openDropdowns[link.name] && (
-                    <nav
-                      className={`transition-all ease-in-out duration-200 grid ${
-                        openDropdowns ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                      }`}
-                    >
-                      <ul
-                        className={`flex flex-col gap-[5px] transition-all ease-in-out duration-200 overflow-hidden bg-white rounded-bl-[8px] rounded-br-[8px] px-[12px] pb-[20px]`}
-                      >
-                        {link.submenu.map((item, innerIndex) => {
-                          const active =
-                            currentPath == item.path ||
-                            currentPath.slice(
-                              currentPath.indexOf("/", 0),
-                              currentPath.indexOf("/", 1)
-                            ) == item.path;
-                          return (
-                            <Link
-                              onClick={() => setMobileMenuActive(false)}
-                              className={`relative flex flex-col px-[20px] py-[12px] border-l-2 rounded-[5px] hover:bg-grey-fe border-l-transparent hover:text-secondary hover:border-l-secondary transition-all ease-in-out duration-200 ${
-                                active
-                                  ? "bg-grey-fe text-secondary border-l-secondary"
-                                  : "border-l-transparent"
-                              }`}
-                              key={innerIndex}
-                              href={item.path}
-                            >
-                              {item.name}
-                            </Link>
-                          );
-                        })}
-                      </ul>
-                    </nav>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <MobileMenu
+          menu={mainMenu}
+          currentPath={currentPath}
+          setMobileMenuActive={setMobileMenuActive}
+          categoryMenu={
+            mainMenu
+              .find((link) => link.name === "Resources")
+              ?.submenu?.find((item) => item.name === "Blogs")?.categoryMenu ||
+            []
+          }
+        />
         <div className="flex items-center justify-center pt-[40px] pb-[30px]">
           <Link
             onClick={() => setMobileMenuActive(false)}
-            className={`mobile-menu-item px-[25px] py-[16px] relative overflow-hidden transition-all ease-in-out duration-200 inline-flex items-center justify-center gap-x-[10px] rounded-full font-semibold bg-primary  text-white shadow-[0_12px_26px_#0028570D,inset_0_-4px_7px_#00415E1F] before:transition before:duration-500 before:w-[50px] before:h-[50px] before:absolute before:left-[5px] before:top-1/2 before:transform before:-translate-y-1/2 before:scale-0 before:rounded-full before:bg-[#15c1fc] hover:before:scale-[5] sd:hidden`}
-            href="/contact"
+            className={`mobile-menu-item px-[25px] py-[16px] relative overflow-hidden smooth inline-flex items-center justify-center gap-x-[10px] rounded-full font-semibold bg-primary  text-white shadow-[0_12px_26px_#0028570D,inset_0_-4px_7px_#00415E1F] before:transition before:duration-500 before:w-[50px] before:h-[50px] before:absolute before:left-[5px] before:top-1/2 before:transform before:-translate-y-1/2 before:scale-0 before:rounded-full before:bg-[#15c1fc] hover:before:scale-[5] sd:hidden`}
+            href={`/contact${
+              currentPath !== "/contact" && currentPath !== "/thank-you"
+                ? `?ref=${
+                    currentPath === "/" ? "home" : currentPath.split("/").at(-1)
+                  }`
+                : ""
+            }`}
           >
             <PhoneIcon />
             <span className="relative z-10">Contact</span>
