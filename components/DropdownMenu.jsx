@@ -202,11 +202,11 @@ const CategoryLink = ({
   handleMouseEnterItem,
   onClick,
 }) => {
-  const isActive = currentPath.startsWith(`/category/${category.slug}`);
+  const isActive = currentPath.startsWith(`https://acgile.com/category/${category.slug}`);
 
   return (
     <Link
-      href={`/category/${category.slug}`}
+      href={`https://acgile.com/category/${category.slug}`}
       className={`relative font-medium text-[14px] leading-[20px] flex flex-col px-[15px] py-[10px] rounded-[5px] hover:bg-grey-fe hover:text-secondary smooth ${
         isActive ? "bg-grey-fe text-secondary" : ""
       }`}

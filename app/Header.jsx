@@ -81,7 +81,7 @@ const Header = () => {
               : "py-[15px] t:py-[20px] sd:py-[30px]"
           } transition-all duration-75 ease-linear"`}
         >
-          <Link href="/">
+          <Link href="https://acgile.com">
             <Image
               src={logo}
               alt="Acgile Logo"
