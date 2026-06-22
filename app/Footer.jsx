@@ -48,7 +48,7 @@ const Footer = () => {
             end-to-end accounting and bookkeeping solutions to thriving
             businesses worldwide.
           </p>
-          <div className=" flex flex-col sd:flex-row justify-between items-center pb-[25px] t:pb-[35px] sd:pb-[90px]">
+          <div className=" flex flex-col sd:flex-row justify-between items-center pb-[20px] t:pb-[25px] sd:pb-[20px]">
         {/* <div className="hidden sd:block">
           <AnimatedButton title="Get A Free Quote" link={contactRef} />
         </div> */}
@@ -166,7 +166,7 @@ const Footer = () => {
               </tr>
             </tbody>
           </table>
-          <div className="grid grid-cols-1 gap-[10px] justify-items-center sd:justify-items-start mb-[30px] sd:mb-0 max-w-[420px] mx-auto sd:mx-0">
+          <div className="flex flex-wrap justify-center items-center gap-[14px] sd:gap-[20px] mb-[40px] t:mb-[50px] sd:mb-[60px]">
             <ClutchBadge />
             <UpworkBadge variant="personal" />
             <UpworkBadge variant="agency" />
