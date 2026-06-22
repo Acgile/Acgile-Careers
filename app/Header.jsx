@@ -16,7 +16,10 @@ const Header = () => {
   const activeMenuItem = (link, currentPath) => {
     if (link.name === "Resources")
       return (
-        currentPath.startsWith("/blogs") || currentPath.startsWith("/guide")
+        currentPath.startsWith("/blogs") ||
+        currentPath.startsWith("/case-studies") ||
+        currentPath.startsWith("/guide") ||
+        currentPath.startsWith("/resources")
       );
     if (link.path !== "#")
       return (
