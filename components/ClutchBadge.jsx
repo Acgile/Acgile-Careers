@@ -19,9 +19,9 @@ const ClutchBadge = ({ className = "" }) => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Acgile is rated ${RATING} out of 5 stars based on ${REVIEW_COUNT} verified reviews on Clutch — opens in a new tab`}
-      className={` w-[100%] inline-flex items-center gap-[14px] px-[18px] py-[10px] border border-grey-eb rounded-[12px] bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow ${className}`}
+      className={`  inline-flex items-center gap-[14px] px-[18px] py-[10px] border border-grey-eb rounded-[12px] bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow ${className}`}
     >
-      <span className="text-[#FF3D2E] font-bold text-[20px] leading-none tracking-tight w-{35%]">
+      <span className="text-[#FF3D2E] font-bold text-[20px] leading-none tracking-tight">
         Clutch
       </span>
       <span className="h-[28px] w-[1px] bg-grey-eb" aria-hidden="true" />
