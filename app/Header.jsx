@@ -139,12 +139,12 @@ const Header = () => {
                         parentLink={link}
                         isOpen={activeDropdown === link.name}
                         onClose={closeDropdown}
-                        categoryMenu={
+                        {/* categoryMenu={
                           link.name === "Resources"
                             ? link.submenu.find((item) => item.name === "Blogs")
                                 ?.categoryMenu || []
                             : []
-                        }
+                        } */}
                       />
                     )}
                   </li>
@@ -205,12 +205,12 @@ const Header = () => {
           menu={mainMenu}
           currentPath={currentPath}
           setMobileMenuActive={setMobileMenuActive}
-          categoryMenu={
+          {/* categoryMenu={
             mainMenu
               .find((link) => link.name === "Resources")
               ?.submenu?.find((item) => item.name === "Blogs")?.categoryMenu ||
             []
-          }
+          } */}
         />
         <div className="flex items-center justify-center pt-[40px] pb-[30px]">
           <Link
