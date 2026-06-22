@@ -70,13 +70,13 @@ const DropdownMenu = ({ menu, parentLink, isOpen, onClose, categoryMenu }) => {
                   active={
                     isSubMenuItemActive(item) ||
                     (item.name === "Blogs1" && showBlogCategories) ||
-                    (item.name === "Case Studies" && showCaseStudies)
+                    (item.name === "Case Studies1" && showCaseStudies)
                   }
                   onMouseEnter={() => handleMouseEnterItem(item)}
                   onClick={handleLinkClick}
                   forceActive={
                     (item.name === "Blogs1" && showBlogCategories) ||
-                    (item.name === "Case Studies" && showCaseStudies)
+                    (item.name === "Case Studies1" && showCaseStudies)
                   }
                 />
               ))}
