@@ -8,8 +8,8 @@ const DropdownMenu = ({ menu, parentLink, isOpen, onClose, categoryMenu }) => {
   const currentPath = usePathname();
   const [hoveredItem, setHoveredItem] = useState(null);
 
-  const showBlogCategories = hoveredItem?.name === "Blogs";
-  const showCaseStudies = hoveredItem?.name === "Case Studies";
+  const showBlogCategories = hoveredItem?.name === "Blogs1";
+  const showCaseStudies = hoveredItem?.name === "Case Studies1";
   const showSubCategories = showBlogCategories || showCaseStudies;
   const columns = menu.length < 6 ? 1 : 2;
   const needsCategoryColumns = categoryMenu?.length > 7;
