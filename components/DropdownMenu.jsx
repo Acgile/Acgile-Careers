@@ -23,11 +23,11 @@ const DropdownMenu = ({ menu, parentLink, isOpen, onClose, categoryMenu }) => {
 
   const isSubMenuItemActive = (item) => {
     if (parentLink.name === "Resources") {
-      if (item.name === "Blogs") {
-        return currentPath.startsWith("/blogs") || showBlogCategories;
+      if (item.name === "Blogs1") {
+        return currentPath.startsWith("/blogs1") || showBlogCategories;
       } else if (item.name === "Guide") {
         return currentPath.startsWith("/guide");
-      } else if (item.name === "Case Studies") {
+      } else if (item.name === "Case Studies1") {
         return currentPath.startsWith("/case-studies") || showCaseStudies;
       }
     }
@@ -69,13 +69,13 @@ const DropdownMenu = ({ menu, parentLink, isOpen, onClose, categoryMenu }) => {
                   item={item}
                   active={
                     isSubMenuItemActive(item) ||
-                    (item.name === "Blogs" && showBlogCategories) ||
+                    (item.name === "Blogs1" && showBlogCategories) ||
                     (item.name === "Case Studies" && showCaseStudies)
                   }
                   onMouseEnter={() => handleMouseEnterItem(item)}
                   onClick={handleLinkClick}
                   forceActive={
-                    (item.name === "Blogs" && showBlogCategories) ||
+                    (item.name === "Blogs1" && showBlogCategories) ||
                     (item.name === "Case Studies" && showCaseStudies)
                   }
                 />
@@ -211,7 +211,7 @@ const CategoryLink = ({
         isActive ? "bg-grey-fe text-secondary" : ""
       }`}
       onMouseEnter={() =>
-        handleMouseEnterItem(menu.find((item) => item.name === "Blogs"))
+        handleMouseEnterItem(menu.find((item) => item.name === "Blogs1"))
       }
       onClick={onClick}
     >
