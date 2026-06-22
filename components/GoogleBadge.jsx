@@ -37,7 +37,7 @@ const GoogleBadge = ({ className = "" }) => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Acgile is rated ${RATING} out of 5 stars on Google${REVIEW_COUNT > 0 ? ` based on ${REVIEW_COUNT} reviews` : ""} — opens in a new tab`}
-      className={`w-[100%] inline-flex items-center gap-[14px] px-[18px] py-[10px] border border-grey-eb rounded-[12px] bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow ${className}`}
+      className={` inline-flex items-center gap-[14px] px-[18px] py-[10px] border border-grey-eb rounded-[12px] bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow ${className}`}
     >
       <GoogleWordmark />
       <span className="h-[28px] w-[1px] bg-grey-eb" aria-hidden="true" />
