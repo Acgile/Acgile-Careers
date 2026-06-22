@@ -142,12 +142,7 @@ const Header = () => {
                         parentLink={link}
                         isOpen={activeDropdown === link.name}
                         onClose={closeDropdown}
-                        {/* categoryMenu={
-                          link.name === "Resources"
-                            ? link.submenu.find((item) => item.name === "Blogs")
-                                ?.categoryMenu || []
-                            : []
-                        } */}
+                   
                       />
                     )}
                   </li>
