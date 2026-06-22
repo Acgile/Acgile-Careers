@@ -46,11 +46,11 @@ const UpworkBadge = ({ variant = "agency", className = "" }) => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className={`w-[100%] inline-flex items-center gap-[14px] px-[18px] py-[10px] border border-grey-eb rounded-[12px] bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow ${className}`}
+      className={`inline-flex items-center gap-[14px] px-[18px] py-[10px] border border-grey-eb rounded-[12px] bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow ${className}`}
     >
       <UpworkWordmark color={p.color} />
       <span className="h-[28px] w-[1px] bg-grey-eb" aria-hidden="true" />
-      <span className="flex flex-col w-{35%]">
+      <span className="flex flex-col ">
         <span className="text-[12px] font-semibold text-secondary leading-tight">
           {p.badge}
         </span>
