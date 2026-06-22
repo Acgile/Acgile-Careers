@@ -186,7 +186,7 @@ const Footer = () => {
         © Copyright {new Date().getFullYear()} | All rights reserved |{" "}
         <Link
           className="block t:inline link-hover-underline"
-          href="/privacy-policy"
+          href="https://www.acgile.com/privacy-policy"
         >
           <span>Privacy Policy</span>
         </Link>
