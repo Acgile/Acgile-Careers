@@ -180,7 +180,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <p className="container text-center text-[10px] sd:text-base pb-[30px]">
-        <Link className="link-hover-underline" href="/">
+        <Link className="link-hover-underline" href="https://www.acgile.com/">
           <span>acgile.com</span>
         </Link>{" "}
         © Copyright {new Date().getFullYear()} | All rights reserved |{" "}
