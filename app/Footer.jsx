@@ -34,7 +34,7 @@ const Footer = () => {
       <div className="container pt-[30px] pb-[15px] t:pb-[10px] sd:py-[60px] grid grid-cols-1 t:grid-cols-3 sd:grid-cols-[4fr_3fr_2fr_2fr] gap-[20px] t:gap-[30px] sd:gap-[50px] ld:gap-[100px]">
         {/* Introduction Column */}
         <div className="t:col-span-3 sd:col-span-1 flex flex-col items-center sd:items-start sd:gap-y-[50px] flex-1 t:max-w-[590px] sd:max-w-full mx-auto">
-          <Link href="/">
+          <Link href="https://www.acgile.com/">
             <Image
               className="w-[140px] sd:w-[250px] mb-[20px] sd:mb-0"
               src="/acgile-logo.svg"
