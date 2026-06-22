@@ -166,15 +166,15 @@ const Footer = () => {
               </tr>
             </tbody>
           </table>
-          <div className="flex flex-wrap justify-center items-center gap-[14px] sd:gap-[20px] mb-[40px] t:mb-[50px] sd:mb-[60px]">
+        
+        </div>
+      </div>
+  <div className="flex flex-wrap justify-center items-center gap-[14px] sd:gap-[20px] mb-[40px] t:mb-[50px] sd:mb-[60px]">
             <ClutchBadge />
             <UpworkBadge variant="personal" />
             <UpworkBadge variant="agency" />
             <GoogleBadge />
           </div>
-        </div>
-      </div>
-
       {/* Bottom bar: CTA + Social Links */}
       
 
