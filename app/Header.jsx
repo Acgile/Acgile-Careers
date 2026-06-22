@@ -203,12 +203,7 @@ const Header = () => {
           menu={mainMenu}
           currentPath={currentPath}
           setMobileMenuActive={setMobileMenuActive}
-          {/* categoryMenu={
-            mainMenu
-              .find((link) => link.name === "Resources")
-              ?.submenu?.find((item) => item.name === "Blogs")?.categoryMenu ||
-            []
-          } */}
+          
         />
         <div className="flex items-center justify-center pt-[40px] pb-[30px]">
           <Link
