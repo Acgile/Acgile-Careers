@@ -17,7 +17,7 @@ const CareersPage = () => {
   return (
     <>
       {/* Page Title */}
-      <AnimatedSection className="container my-[50px]">
+      <AnimatedSection className="container my-[0px]">
         <PageTitle
           titleHighlight="Personal Development"
           title="Careers at Acgile"
