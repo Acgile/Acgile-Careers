@@ -31,7 +31,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-grey-fe border-t border-grey-eb">
-      <div className="container pt-[30px] pb-[15px] t:pb-[10px] sd:py-[60px] grid grid-cols-1 t:grid-cols-3 sd:grid-cols-[4fr_3fr_2fr_2fr] gap-[20px] t:gap-[30px] sd:gap-[50px] ld:gap-[100px]">
+      <div className="container pt-[30px] pb-[15px] t:pb-[10px] sd:py-[60px] grid grid-cols-1 t:grid-cols-3 ld:grid-cols-[25%_36%_12%_17%] sd:grid-cols-[26%_31%_13%_15%] gap-[20px] t:gap-[30px] sd:gap-[30px] ld:gap-[60px]">
         {/* Introduction Column */}
         <div className="t:col-span-3 sd:col-span-1 flex flex-col items-center sd:items-start sd:gap-y-[50px] flex-1 t:max-w-[590px] sd:max-w-full mx-auto">
           <Link href="https://www.acgile.com/">
@@ -92,7 +92,7 @@ const Footer = () => {
               <Link
                 key={index}
                 href={link.path}
-                className="link-hover-underline text-[12px] sd:text-base text-grey-5f smooth whitespace-nowrap"
+                className="link-hover-underline text-[12px] sd:text-base text-grey-5f smooth ld:whitespace-nowrap"
               >
                 <span>{link.name}</span>
               </Link>
