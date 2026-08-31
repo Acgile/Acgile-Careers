@@ -69,7 +69,7 @@ const DropdownMenu = ({ menu, parentLink, isOpen, onClose }) => {
             </div>
             <div className="flex flex-col gap-[5px]">
               {menu
-                .filter((item, index) => index >= 7)
+                .filter((item, index) => index >= 8)
                 .map((item, index) => (
                   <SubMenuLink
                     key={index}
